@@ -56,7 +56,7 @@ Every agent tool call gets a tier. Tier 1 runs freely. Tier 2 runs and is logged
 - A scheduled job runs against an explicit allowlist. A scope absent from the list is denied.
 - With no human and no allowlist, the action is denied.
 
-One finding from 2026-09-10 shaped this design. Under the agent's permission-bypass mode, an "ask" decision from a hook was silently treated as "allow", and a tier-3 action passed with no prompt. The gate now shows a native dialog in that mode, and a refusal, a timeout or a missing screen means deny. Guardrails must fail closed. The hooks are in [claude-guardrails](https://github.com/cyphalle/claude-guardrails).
+One finding from 2026-09-10 shaped this design. Under the agent's permission-bypass mode, an "ask" decision from a hook was silently treated as "allow", and a tier-3 action passed with no prompt. The gate now shows a native dialog in that mode, and a refusal, a timeout or a missing screen means deny. Guardrails must fail closed. The hooks are in [agent-guardrails](https://github.com/cyphalle/agent-guardrails).
 
 ## What this repository holds
 
