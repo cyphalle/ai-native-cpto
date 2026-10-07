@@ -19,7 +19,7 @@ The losses had causes, and each cause was a place where the job recorded its own
 - **The cutoff moved by itself.** The job treats a comment as handled when a code push comes after it. Comments posted while a run was in progress were then hidden by that run's own push, which had never read them. Merging the base branch into the pull request had the same effect, and marked every earlier comment as answered.
 - A failed attempt was stored as an empty one. When a run could not take the branch because another session held it, the job stored "tried, nothing to do". One pull request was skipped six times this way. In an earlier incident, a run started its tests in the background, ended its turn waiting for a notification that never came, and stopped with five changed files on disk. The job stored the same verdict and skipped that pull request 21 times.
 - The agent read a review its own way. It reported one line per comment, so a comment with five numbered points could come back with three answered. It treated tests listed in a collapsed block as observations instead of requests. And it refused to touch any migration, including a migration the pull request itself had introduced, so those fixes reached the merge open.
-- Approval ended the conversation. Most of the 32 merged requests were merged within minutes of an approval,. The fastest one was merged 51 seconds after the comment.
+- Approval ended the conversation. Most of the 32 merged requests were merged within minutes of an approval. The fastest one was merged 51 seconds after the comment.
 
 ## The rule before, and the rule after
 
