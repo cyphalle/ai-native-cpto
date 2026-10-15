@@ -1,6 +1,6 @@
 # An agent that answers code review needs an audit that starts from the review
 
-In fourteen days, reviewers left 1,004 requests on my pull requests. An automated agent was in charge of answering them. When I audited that agent by hand, 16 requests had been dropped silently by one of its runs, and 32 more had been merged with no run and no commit at all. That is 48 requests, a bit under 5%, that a reviewer asked for and never got.
+In fourteen days, reviewers left 1,004 requests on my pull requests. An automated agent was in charge of answering them. When I audited that agent by hand, 16 requests had been dropped silently by its runs. That is 16 requests, under 2%, that a reviewer asked for and never got.
 
 None of my monitoring had seen it. Every run had started, finished and logged a result.
 
@@ -18,8 +18,7 @@ The losses had causes, and each cause was a place where the job recorded its own
 
 - **The cutoff moved by itself.** The job treats a comment as handled when a code push comes after it. Comments posted while a run was in progress were then hidden by that run's own push, which had never read them. Merging the base branch into the pull request had the same effect, and marked every earlier comment as answered.
 - A failed attempt was stored as an empty one. When a run could not take the branch because another session held it, the job stored "tried, nothing to do". One pull request was skipped six times this way. In an earlier incident, a run started its tests in the background, ended its turn waiting for a notification that never came, and stopped with five changed files on disk. The job stored the same verdict and skipped that pull request 21 times.
-- The agent read a review its own way. It reported one line per comment, so a comment with five numbered points could come back with three answered. It treated tests listed in a collapsed block as observations instead of requests. And it refused to touch any migration, including a migration the pull request itself had introduced, so those fixes reached the merge open.
-- Approval ended the conversation. Most of the 32 merged requests were merged within minutes of an approval. The fastest one was merged 51 seconds after the comment.
+- The agent read a review its own way. It reported one line per comment, so a comment with five numbered points could come back with three answered. It treated tests listed in a collapsed block as observations instead of requests.
 
 ## The rule before, and the rule after
 
@@ -44,4 +43,4 @@ If you run an agent that acts on human requests, whether review comments, suppor
 
 Liveness alone looks healthy while coverage leaks, because every leak I found happened inside a run that reported success. The weak points are the same in every such loop: a cutoff that decides what is new, a cache that remembers what was tried, and the moment a human approves. Audit those three first.
 
-The 48 requests it found had each been written by a reviewer who assumed someone would read it.
+The 16 requests it found had each been written by a reviewer who assumed someone would read it.

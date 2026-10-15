@@ -1,22 +1,20 @@
-# A reviewer is a commitment: how we cut review requests to the data owner by tying them to decisions
+# A reviewer is a commitment: tie review requests to decisions
 
-In our team, being added as a reviewer means you answer within 24 hours. That makes a review request expensive for the person who receives it. For two weeks in September I did not treat it that way, and the numbers showed it.
+In our team, being added as a reviewer means you answer within 24 hours. That makes a review request expensive for the person who receives it. For a while I did not treat it that way.
 
 ## The rule that over-fired
 
 Our product computes figures from scientific methods and reference data. Two people own that layer. The chief science officer owns the science: what we measure, which formula, which threshold. The data owner owns the implemented data: which table, which value, which source.
 
-We had already learned not to ask them open questions before the work. Asked cold, "what do you think about this threshold?" often gets no strong answer, and the work waits. So the agent makes the call, writes it down, and the pull request asks them to ratify or correct a written choice.
+We had already learned not to ask open questions before the work. A written choice is faster to judge than "what do you think about this threshold?". So the agent makes the call, writes it down, and the pull request asks them to ratify or correct a written choice.
 
 To make that work, every pull request that touched a method or data choice carried a section listing those choices, one per line, with the option set aside. And the rule coupled that section with a reviewer: if the section exists, add the data owner as a reviewer.
 
 ## What the measure said
 
-I measured the last 150 pull requests. In two weeks, the data owner received 19 review requests and answered 5.
+Then I read the review requests this rule had sent. Very few of them touched a reference table. Most applied a decision that already existed: they displayed a value in a unit already chosen, aggregated the way the rest of the code aggregates, wired a source already selected, or fixed a bug in a calculation whose formula did not change.
 
-Then I read the 19. Only one of them touched a reference table. The other 18 applied a decision that already existed: they displayed a value in a unit already chosen, aggregated the way the rest of the code aggregates, wired a source already selected, or fixed a bug in a calculation whose formula did not change.
-
-At 19 requests for one real question, a person does the rational thing. They sort by ignoring. The one request that mattered drowned in the others.
+When most requests carry no real question, the one request that matters drowns in the others.
 
 ## Two gestures, split apart
 
